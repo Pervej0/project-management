@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input, Typography } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import { inter, roboto } from "@/assets/fonts";
 import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type Inputs = {
   email?: string;
@@ -13,10 +15,18 @@ type Inputs = {
 };
 
 export default function Home() {
-  const onSubmit = (data: Inputs) => console.log(data);
+  const router = useRouter();
+  const onSubmit = (data: Inputs) => {
+    if (data) {
+      toast("Successfully logged in.", { icon: "👏" });
+      router.push("/dashboard");
+    }
+  };
 
   return (
     <main className="px-14">
+      <Toaster />
+
       <div className="grid min-h-screen md:grid-cols-2 grid-cols-1 items-center">
         <Image
           src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg"
@@ -77,7 +87,10 @@ export default function Home() {
                 Log in
               </Button>
               <div>
-                <p>Don't have an account?</p> <Link href="/">Sign up now</Link>
+                <h5 className="text-sm mt-1">Don't have an account?</h5>{" "}
+                <Link className="text-blue-600 font-semibold" href="/">
+                  Sign up now
+                </Link>
               </div>
             </Form.Item>
           </Form>
