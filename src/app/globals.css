@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.react-datepicker,
+.react-datepicker__month-container {
+  width: 100%;
+}
