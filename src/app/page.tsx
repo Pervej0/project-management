@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import type { FormProps } from "antd";
-import { Button, Checkbox, Form, Input } from "antd";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Button, Checkbox, Form, Input, Typography } from "antd";
 import { inter, roboto } from "@/assets/fonts";
+import { LockOutlined, MailOutlined } from "@ant-design/icons";
 import Link from "next/link";
 
 type Inputs = {
@@ -13,13 +13,7 @@ type Inputs = {
 };
 
 export default function Home() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit = (data: Inputs) => console.log(data);
 
   return (
     <main className="px-14">
@@ -36,34 +30,57 @@ export default function Home() {
           >
             Log in to dashboard
           </h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="border-2 border-gray-800 rounded-md w-full mb-5 px-2 py-2"
-              type="email"
-              placeholder="Enter email"
-              required
-              {...register("email")}
-            />
+          <Form
+            name="normal_login"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onSubmit}
+            layout="vertical"
+            requiredMark="optional"
+          >
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  type: "email",
+                  required: true,
+                  message: "Please input your Email!",
+                },
+              ]}
+            >
+              <Input
+                className="py-2 text-lg px-2 mb-2"
+                prefix={<MailOutlined />}
+                placeholder="Email"
+              />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Password!",
+                },
+              ]}
+            >
+              <Input.Password
+                prefix={<LockOutlined />}
+                className="py-2 text-lg px-2"
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
 
-            <input
-              className="border w-full mb-5 px-2 py-2"
-              type="password"
-              placeholder="Enter password"
-              required
-              {...register("password")}
-            />
-            <input
-              className="bg-blue-600 px-4 py-2 rounded-md text-white"
-              type="submit"
-              value="Login"
-            />
-            <p className="text-center mt-4">
-              Don&apos;t have an account?{" "}
-              <Link className="text-accent text-blue-600" href="/register">
-                Create an account
-              </Link>
-            </p>
-          </form>
+            <Form.Item style={{ marginBottom: "0px" }}>
+              <Button block={true} type="primary" htmlType="submit">
+                Log in
+              </Button>
+              <div>
+                <p>Don't have an account?</p> <Link href="/">Sign up now</Link>
+              </div>
+            </Form.Item>
+          </Form>
         </div>
       </div>
     </main>
