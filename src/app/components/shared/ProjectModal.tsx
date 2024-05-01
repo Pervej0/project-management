@@ -90,7 +90,7 @@ const ProjectModal = ({ open, setOpen }: any) => {
           layout="vertical"
           requiredMark="optional"
         >
-          <label className="block text-lg mb-2">Project Task</label>
+          <label className="block text-lg mb-2">Project title</label>
           <Form.Item
             name="task"
             rules={[

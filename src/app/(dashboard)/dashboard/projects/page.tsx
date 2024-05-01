@@ -11,6 +11,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import Snipper from "@/app/components/shared/Spinner";
 import Link from "next/link";
 import ProjectModal from "@/app/components/shared/ProjectModal";
+
 interface DataType {
   id: string;
   title: string;
@@ -18,10 +19,9 @@ interface DataType {
 
 const page = () => {
   const [open, setOpen] = useState(false);
-
   const query = useQuery("projects", async () => {
     const response = await fetch("http://localhost:3004/projects");
-    const data = response.json();
+    const data = await response.json();
     return data;
   });
 
@@ -42,14 +42,21 @@ const page = () => {
       key: "title",
     },
     {
+      title: "Team Members",
+      dataIndex: "teamMembers",
+      key: "teamMembers",
+    },
+    {
       title: "Action",
       key: "action",
       render: (_, record) => (
         <Space size="middle">
           <Tooltip placement="topLeft" title="View">
-            <Button>
-              <IoEyeSharp size={16} />
-            </Button>
+            <Link href={`/dashboard/projects/${record.id}`}>
+              <Button>
+                <IoEyeSharp size={16} />
+              </Button>
+            </Link>
           </Tooltip>
           <Tooltip placement="topLeft" title="Edit">
             <Button type="primary" onClick={showModal}>
@@ -75,12 +82,12 @@ const page = () => {
           className="bg-green-700 text-white px-2 py-1 rounded-md"
           href="/dashboard/projects/create"
         >
-          Create Task
+          Create Project
         </Link>
       </div>
       <Table
         columns={columns}
-        dataSource={query?.data}
+        dataSource={query.data}
         pagination={{
           defaultPageSize: 5,
           showSizeChanger: true,

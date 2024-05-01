@@ -2,43 +2,157 @@
   "projects": [
     {
       "id": "1",
-      "title": "Solving Home page Ui structure"
+      "title": "Developing apps",
+      "tasks": [
+        {
+          "tasksId": "001",
+          "name": "Solving Home page Ui structure",
+          "dueDate": "2024-05-29",
+          "assignee": "Mohammad",
+          "recentActivities": "Inprogress"
+        }
+      ],
+      "teamMembers": ["Md Pervej Hossain", "Tonmoy Parvez"]
     },
     {
       "id": "2",
-      "title": "Implementing Responsive Design for Product Grid"
+      "title": "Bug fixing",
+      "tasks": [
+        {
+          "tasksId": "002",
+          "name": "Fixing authentication bug",
+          "dueDate": "2024-06-10",
+          "assignee": "Alice",
+          "recentActivities": "In progress"
+        }
+      ],
+      "teamMembers": ["Alice Smith", "Bob Johnson"]
     },
     {
       "id": "3",
-      "title": "Optimizing Navigation Menu for Mobile Devices"
+      "title": "Database optimization",
+      "tasks": [
+        {
+          "tasksId": "003",
+          "name": "Optimizing database queries",
+          "dueDate": "2024-06-15",
+          "assignee": "David",
+          "recentActivities": "Started"
+        }
+      ],
+      "teamMembers": ["Emily Brown", "David Lee"]
     },
     {
       "id": "4",
-      "title": "Integrating Carousel for Featured Content"
+      "title": "UI/UX Design",
+      "tasks": [
+        {
+          "tasksId": "004",
+          "name": "Creating wireframes for new feature",
+          "dueDate": "2024-06-05",
+          "assignee": "Sophia",
+          "recentActivities": "Completed"
+        }
+      ],
+      "teamMembers": ["Sophia Wang", "James Miller"]
     },
     {
       "id": "5",
-      "title": "Improving Search Functionality with Auto-Suggestions"
+      "title": "Backend Development",
+      "tasks": [
+        {
+          "tasksId": "005",
+          "name": "Implementing API endpoints",
+          "dueDate": "2024-06-20",
+          "assignee": "Emma",
+          "recentActivities": "In progress"
+        }
+      ],
+      "teamMembers": ["Daniel Garcia", "Emma Martinez"]
     },
     {
       "id": "6",
-      "title": "Enhancing User Profile Dashboard Layout"
+      "title": "Testing",
+      "tasks": [
+        {
+          "tasksId": "006",
+          "name": "Writing test cases for user authentication",
+          "dueDate": "2024-06-25",
+          "assignee": "Olivia",
+          "recentActivities": "Planned"
+        }
+      ],
+      "teamMembers": ["Liam Wilson", "Olivia Taylor"]
     },
     {
       "id": "7",
-      "title": "Adding Animation Effects to Call-to-Action Buttons"
+      "title": "Deployment",
+      "tasks": [
+        {
+          "tasksId": "007",
+          "name": "Preparing for production deployment",
+          "dueDate": "2024-06-30",
+          "assignee": "Noah",
+          "recentActivities": "In progress"
+        }
+      ],
+      "teamMembers": ["Noah Anderson", "Ava White"]
     },
     {
       "id": "8",
-      "title": "Customizing Footer Section for Social Media Integration"
+      "title": "Documentation",
+      "tasks": [
+        {
+          "tasksId": "008",
+          "name": "Writing user manual",
+          "dueDate": "2024-07-05",
+          "assignee": "Ethan",
+          "recentActivities": "In progress"
+        }
+      ],
+      "teamMembers": ["Ethan Jones", "Isabella Garcia"]
     },
     {
       "id": "9",
-      "title": "Incorporating Parallax Scrolling for Visual Depth"
+      "title": "Feature Development",
+      "tasks": [
+        {
+          "tasksId": "009",
+          "name": "Implementing search feature",
+          "dueDate": "2024-07-10",
+          "assignee": "Mia",
+          "recentActivities": "Planned"
+        }
+      ],
+      "teamMembers": ["Mia Rodriguez", "Elijah Martinez"]
     },
     {
       "id": "10",
-      "title": "Implementing Lazy Loading for Image-heavy Sections"
+      "title": "Security Enhancement",
+      "tasks": [
+        {
+          "tasksId": "010",
+          "name": "Implementing encryption for user data",
+          "dueDate": "2024-07-15",
+          "assignee": "Lucas",
+          "recentActivities": "In progress"
+        }
+      ],
+      "teamMembers": ["Charlotte Wilson", "Lucas Brown"]
+    },
+    {
+      "id": "11",
+      "title": "Performance Optimization",
+      "tasks": [
+        {
+          "tasksId": "011",
+          "name": "Optimizing frontend rendering speed",
+          "dueDate": "2024-07-20",
+          "assignee": "Harper",
+          "recentActivities": "Started"
+        }
+      ],
+      "teamMembers": ["Harper Taylor", "Logan Martinez"]
     }
   ]
 }
