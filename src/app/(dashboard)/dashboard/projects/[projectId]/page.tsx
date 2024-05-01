@@ -15,8 +15,6 @@ const page = ({ params }: { params: { projectId: string } }) => {
   });
   console.log(query);
 
-  // const { title, tasks } = query?.data;
-
   return (
     <div className="shadow-xl m-4 bg-slate-100 border p-5">
       <div>

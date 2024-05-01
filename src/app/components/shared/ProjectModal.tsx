@@ -1,4 +1,5 @@
 "use client";
+import { TProject } from "@/types/project.type";
 import {
   Button,
   Flex,
@@ -30,25 +31,12 @@ const TeamOptions: SelectProps["options"] = [
   },
 ];
 
-const ActivitiesOptions: SelectProps["options"] = [
-  { value: "In Progress", label: "In Progress" },
-  { value: "Completed", label: "Completed" },
-  { value: "New Assignments", label: "New Assignments" },
-  { value: "Updates", label: "Updates" },
-  { value: "Milestones Reached", label: "Milestones Reached" },
-  { value: "Issues/Concerns", label: "Issues/Concerns" },
-  { value: "Delays", label: "Delays" },
-  { value: "Feedback Received", label: "Feedback Received" },
-  { value: "Dependencies", label: "Dependencies" },
-  { value: "Communication", label: "Communication" },
-];
-
-const ProjectModal = ({ open, setOpen }: any) => {
+const ProjectModal = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState("Content of the modal");
+  const [form] = Form.useForm();
+  const [team, setTeam] = useState([]);
 
   const handleOk = () => {
-    setModalText("The modal will be closed after two seconds");
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
@@ -56,22 +44,12 @@ const ProjectModal = ({ open, setOpen }: any) => {
     }, 2000);
   };
 
-  const handleCancel = () => {
-    console.log("Clicked cancel button");
-    setOpen(false);
-  };
-
   const onSubmit = (data: any) => {
+    data.teamMembers = team;
     console.log(data);
+    form.resetFields();
   };
 
-  const handleChange = (value: string[]) => {
-    console.log(`selected ${value}`);
-  };
-
-  const handleActivitiesChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
   return (
     <>
       <Modal
@@ -79,7 +57,7 @@ const ProjectModal = ({ open, setOpen }: any) => {
         open={open}
         onOk={handleOk}
         confirmLoading={confirmLoading}
-        onCancel={handleCancel}
+        onCancel={() => setOpen(false)}
       >
         <Form
           name="normal_login"
@@ -100,31 +78,19 @@ const ProjectModal = ({ open, setOpen }: any) => {
               },
             ]}
           >
-            <Input className="py-2 text-lg px-2" placeholder="Email" />
+            <Input className="py-2 text-lg px-2" placeholder="Project title" />
           </Form.Item>
-          <Flex className="mb-8" align="center" gap={10}>
-            <div className="w-full">
-              <label className="block text-lg mb-2">Assign team members</label>
-              <Select
-                mode="multiple"
-                className="w-full"
-                placeholder="select members"
-                onChange={handleChange}
-                options={TeamOptions}
-                optionRender={(option) => <Space>{option.data.value}</Space>}
-              />
-            </div>
-            <div className="w-full">
-              <label className="block text-lg mb-2">Project Task</label>
-              <Select
-                className="w-full"
-                defaultValue="Inprogress"
-                // style={{ width: 120 }}
-                onChange={handleActivitiesChange}
-                options={ActivitiesOptions}
-              />
-            </div>
-          </Flex>
+          <div className="w-full mb-4">
+            <label className="block text-lg mb-2">Assign team members</label>
+            <Select
+              mode="multiple"
+              className="w-full"
+              placeholder="select members"
+              onChange={(values) => setTeam(values)}
+              options={TeamOptions}
+              optionRender={(option) => <Space>{option.data.value}</Space>}
+            />
+          </div>
 
           <Form.Item style={{ marginBottom: "0px" }}>
             <Button block={true} type="primary" htmlType="submit">

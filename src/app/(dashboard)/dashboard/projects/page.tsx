@@ -11,6 +11,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import Snipper from "@/app/components/shared/Spinner";
 import Link from "next/link";
 import ProjectModal from "@/app/components/shared/ProjectModal";
+import toast from "react-hot-toast";
 
 interface DataType {
   id: string;
@@ -19,6 +20,8 @@ interface DataType {
 
 const page = () => {
   const [open, setOpen] = useState(false);
+  const [project, setProject] = useState();
+
   const query = useQuery("projects", async () => {
     const response = await fetch("http://localhost:3004/projects");
     const data = await response.json();
@@ -34,10 +37,10 @@ const page = () => {
       title: "S/N",
       dataIndex: "id",
       key: "id",
-      render: (id) => <a>{id}</a>,
+      render: (id, record, index) => <a>{index + 1}</a>,
     },
     {
-      title: "Name",
+      title: "Project Name",
       dataIndex: "title",
       key: "title",
     },

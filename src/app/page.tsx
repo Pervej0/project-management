@@ -19,8 +19,9 @@ export default function Home() {
   const router = useRouter();
   const onSubmit = (data: Inputs) => {
     if (data) {
-      toast("Successfully logged in.", { icon: "👏" });
+      toast("Processing.");
       router.push("/dashboard");
+      toast("Successfully logged in.", { icon: "👏" });
     }
   };
 
