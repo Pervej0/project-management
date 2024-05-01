@@ -22,9 +22,9 @@ const MainSidebar = ({ openSidebar, setOpenSidebar }: any) => {
       link: "/dashboard/task-management",
       icon: FcLeave,
     },
-    { name: "Notice", link: "/", icon: RiNotificationLine },
-    { name: "Tasks", link: "/", icon: FaTasks },
-    { name: "Settings", link: "/", icon: CiSettings, margin: true },
+    { name: "Notice", link: "/dashboard", icon: RiNotificationLine },
+    { name: "Tasks", link: "/dashboard", icon: FaTasks },
+    { name: "Settings", link: "/dashboard", icon: CiSettings, margin: true },
     { name: "Sign out", link: "/", icon: GoSignOut },
   ];
 
