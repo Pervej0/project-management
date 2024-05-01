@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
+import { TProject } from "@/types/project.type";
 import {
   Button,
   DatePicker,
@@ -13,6 +14,8 @@ import {
   Space,
 } from "antd";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { json } from "stream/consumers";
 
 const TeamOptions: SelectProps["options"] = [
   {
@@ -51,12 +54,35 @@ const page = () => {
   const [activities, setActivities] = useState<string>("Inprogress");
   const [dueDate, setDueDate] = useState<string>("");
 
-  const onSubmit = (data: any) => {
-    data.teamMembers = teams;
-    data.recentActivities = activities;
-    data.dueDate = dueDate;
+  const onSubmit = async (data: TProject | any) => {
+    const randomId = Math.random().toString(36).slice(2);
+    const updatedData = {
+      id: randomId,
+      title: data.title,
+      tasks: [
+        {
+          id: randomId + "1",
+          name: data.taskName,
+          recentActivities: activities,
+          dueDate: dueDate,
+        },
+      ],
+      teamMembers: teams,
+    };
 
-    console.log(data);
+    const response = await fetch("http://localhost:3004/projects", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    const result = await response.json();
+    if (result) {
+      toast("Successfully created!");
+    }
   };
 
   // const dateOnChange: DatePickerProps["onChange"] = (date, dateString) => {
@@ -76,7 +102,7 @@ const page = () => {
       >
         <label className="block text-lg mb-2">Project Task</label>
         <Form.Item
-          name="task"
+          name="title"
           rules={[
             {
               required: true,
@@ -110,13 +136,20 @@ const page = () => {
             />
           </div>
         </Flex>
-        <Flex className="mb-5" align="center" gap={10}>
+        <Flex align="center" gap="0px 10px">
           <div className="w-full">
-            <label className="block text-lg mb-2">Due Date</label>
-            <DatePicker
-              width={300}
-              onChange={(_, dateString) => setDueDate(dateString as string)}
-            />
+            <label className="block text-lg mb-2">Task Name</label>
+            <Form.Item
+              name="taskName"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input task name!",
+                },
+              ]}
+            >
+              <Input className="text-lg px-2 mb-2" placeholder="Assign by" />
+            </Form.Item>
           </div>
           <div className="w-full">
             <label className="block text-lg mb-2">Assignee</label>
@@ -133,7 +166,13 @@ const page = () => {
             </Form.Item>
           </div>
         </Flex>
-
+        <div className="w-full mb-4">
+          <label className="block text-lg mb-2">Deadline</label>
+          <DatePicker
+            width={300}
+            onChange={(_, dateString) => setDueDate(dateString as string)}
+          />
+        </div>
         <Form.Item style={{ marginBottom: "0px" }}>
           <Button block={true} type="primary" htmlType="submit">
             Submit

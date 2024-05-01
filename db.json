@@ -1,20 +1,6 @@
 {
   "projects": [
     {
-      "id": "1",
-      "title": "Developing apps",
-      "tasks": [
-        {
-          "tasksId": "001",
-          "name": "Solving Home page Ui structure",
-          "dueDate": "2024-05-29",
-          "assignee": "Mohammad",
-          "recentActivities": "Inprogress"
-        }
-      ],
-      "teamMembers": ["Md Pervej Hossain", "Tonmoy Parvez"]
-    },
-    {
       "id": "2",
       "title": "Bug fixing",
       "tasks": [

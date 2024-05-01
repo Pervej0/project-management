@@ -12,6 +12,7 @@ import Snipper from "@/app/components/shared/Spinner";
 import Link from "next/link";
 import ProjectModal from "@/app/components/shared/ProjectModal";
 import toast from "react-hot-toast";
+import { TProject } from "@/types/project.type";
 
 interface DataType {
   id: string;
@@ -20,7 +21,7 @@ interface DataType {
 
 const page = () => {
   const [open, setOpen] = useState(false);
-  const [project, setProject] = useState();
+  const [dataSource, setDataSource] = useState([]);
 
   const query = useQuery("projects", async () => {
     const response = await fetch("http://localhost:3004/projects");
@@ -31,6 +32,20 @@ const page = () => {
   const showModal = () => {
     setOpen(true);
   };
+
+  const removeProject = async (id: string) => {
+    const response = await fetch(`http://localhost:3004/projects/${id}`, {
+      method: "DELETE",
+    });
+    const result = await response.json();
+    console.log(result, "xxx");
+    if (result) {
+      toast("Successfully deleted!");
+    }
+  };
+
+  // const filterByProjectName =
+  // console.log(filterByProjectName, "xxx");
 
   const columns: TableProps<DataType>["columns"] = [
     {
@@ -43,7 +58,14 @@ const page = () => {
       title: "Project Name",
       dataIndex: "title",
       key: "title",
+      filters: query.data?.map((item: TProject) => ({
+        text: item.title,
+        value: item.title,
+      })),
+
+      onFilter: (value, record) => record.title.indexOf(value as string) === 0,
     },
+
     {
       title: "Team Members",
       dataIndex: "teamMembers",
@@ -67,7 +89,7 @@ const page = () => {
             </Button>
           </Tooltip>
           <Tooltip placement="topLeft" title="Delete">
-            <Button>
+            <Button onClick={() => removeProject(record.id)}>
               <MdDeleteOutline size={16} />
             </Button>
           </Tooltip>
@@ -90,7 +112,7 @@ const page = () => {
       </div>
       <Table
         columns={columns}
-        dataSource={query.data}
+        dataSource={query?.data}
         pagination={{
           defaultPageSize: 5,
           showSizeChanger: true,
