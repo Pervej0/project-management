@@ -1,22 +1,8 @@
 {
   "projects": [
     {
-      "id": "2",
-      "title": "Bug fixing",
-      "tasks": [
-        {
-          "tasksId": "002",
-          "name": "Fixing authentication bug",
-          "dueDate": "2024-06-10",
-          "assignee": "Alice",
-          "recentActivities": "In progress"
-        }
-      ],
-      "teamMembers": ["Alice Smith", "Bob Johnson"]
-    },
-    {
       "id": "3",
-      "title": "Database optimization",
+      "title": "Develop slider",
       "tasks": [
         {
           "tasksId": "003",
@@ -26,25 +12,13 @@
           "recentActivities": "Started"
         }
       ],
-      "teamMembers": ["Emily Brown", "David Lee"]
-    },
-    {
-      "id": "4",
-      "title": "UI/UX Design",
-      "tasks": [
-        {
-          "tasksId": "004",
-          "name": "Creating wireframes for new feature",
-          "dueDate": "2024-06-05",
-          "assignee": "Sophia",
-          "recentActivities": "Completed"
-        }
-      ],
-      "teamMembers": ["Sophia Wang", "James Miller"]
+      "teamMembers": [
+        "Tonmoy Parvez"
+      ]
     },
     {
       "id": "5",
-      "title": "Backend Development",
+      "title": "Develop slider",
       "tasks": [
         {
           "tasksId": "005",
@@ -54,35 +28,9 @@
           "recentActivities": "In progress"
         }
       ],
-      "teamMembers": ["Daniel Garcia", "Emma Martinez"]
-    },
-    {
-      "id": "6",
-      "title": "Testing",
-      "tasks": [
-        {
-          "tasksId": "006",
-          "name": "Writing test cases for user authentication",
-          "dueDate": "2024-06-25",
-          "assignee": "Olivia",
-          "recentActivities": "Planned"
-        }
-      ],
-      "teamMembers": ["Liam Wilson", "Olivia Taylor"]
-    },
-    {
-      "id": "7",
-      "title": "Deployment",
-      "tasks": [
-        {
-          "tasksId": "007",
-          "name": "Preparing for production deployment",
-          "dueDate": "2024-06-30",
-          "assignee": "Noah",
-          "recentActivities": "In progress"
-        }
-      ],
-      "teamMembers": ["Noah Anderson", "Ava White"]
+      "teamMembers": [
+        "Md Pervej Hossain"
+      ]
     },
     {
       "id": "8",
@@ -96,7 +44,10 @@
           "recentActivities": "In progress"
         }
       ],
-      "teamMembers": ["Ethan Jones", "Isabella Garcia"]
+      "teamMembers": [
+        "Ethan Jones",
+        "Isabella Garcia"
+      ]
     },
     {
       "id": "9",
@@ -110,35 +61,26 @@
           "recentActivities": "Planned"
         }
       ],
-      "teamMembers": ["Mia Rodriguez", "Elijah Martinez"]
+      "teamMembers": [
+        "Mia Rodriguez",
+        "Elijah Martinez"
+      ]
     },
     {
-      "id": "10",
-      "title": "Security Enhancement",
+      "id": "6ynktvygbmn",
+      "title": "Develop slider",
       "tasks": [
         {
-          "tasksId": "010",
-          "name": "Implementing encryption for user data",
-          "dueDate": "2024-07-15",
-          "assignee": "Lucas",
-          "recentActivities": "In progress"
+          "id": "6ynktvygbmn1",
+          "name": "Creating new page",
+          "recentActivities": "New Assignments",
+          "dueDate": "2024-05-15"
         }
       ],
-      "teamMembers": ["Charlotte Wilson", "Lucas Brown"]
-    },
-    {
-      "id": "11",
-      "title": "Performance Optimization",
-      "tasks": [
-        {
-          "tasksId": "011",
-          "name": "Optimizing frontend rendering speed",
-          "dueDate": "2024-07-20",
-          "assignee": "Harper",
-          "recentActivities": "Started"
-        }
-      ],
-      "teamMembers": ["Harper Taylor", "Logan Martinez"]
+      "teamMembers": [
+        "Md Pervej Hossain",
+        "Tonmoy Parvez"
+      ]
     }
   ]
 }

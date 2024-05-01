@@ -11,7 +11,7 @@ import { IoEyeSharp } from "react-icons/io5";
 import Snipper from "@/app/components/shared/Spinner";
 import Link from "next/link";
 import ProjectModal from "@/app/components/shared/ProjectModal";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { TProject } from "@/types/project.type";
 
 interface DataType {
@@ -22,30 +22,49 @@ interface DataType {
 const page = () => {
   const [open, setOpen] = useState(false);
   const [dataSource, setDataSource] = useState([]);
+  const [projectUpdateData, setProjectData] = useState({});
 
   const query = useQuery("projects", async () => {
     const response = await fetch("http://localhost:3004/projects");
     const data = await response.json();
+    setDataSource(data);
     return data;
   });
-
-  const showModal = () => {
-    setOpen(true);
-  };
 
   const removeProject = async (id: string) => {
     const response = await fetch(`http://localhost:3004/projects/${id}`, {
       method: "DELETE",
     });
     const result = await response.json();
-    console.log(result, "xxx");
     if (result) {
       toast("Successfully deleted!");
+      const filterdData = dataSource?.filter(
+        (item: TProject) => item.id !== result.id
+      );
+      setDataSource(filterdData);
     }
   };
 
-  // const filterByProjectName =
-  // console.log(filterByProjectName, "xxx");
+  const updateProject = async (id: string) => {
+    console.log(projectUpdateData, "xxx");
+    if (Object.entries(projectUpdateData).length > 0) {
+      const response = await fetch(`http://localhost:3004/projects/${id}`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(projectUpdateData),
+      });
+      const result = await response.json();
+      console.log(result, "ccc");
+    }
+    return;
+    // if (result) {
+    //   toast("Successfully updated!");
+    //   setDataSource(query.data);
+    // }
+  };
 
   const columns: TableProps<DataType>["columns"] = [
     {
@@ -84,7 +103,13 @@ const page = () => {
             </Link>
           </Tooltip>
           <Tooltip placement="topLeft" title="Edit">
-            <Button type="primary" onClick={showModal}>
+            <Button
+              type="primary"
+              onClick={() => {
+                setOpen(true);
+                updateProject(record.id);
+              }}
+            >
               <CiEdit size={16} />
             </Button>
           </Tooltip>
@@ -100,7 +125,12 @@ const page = () => {
 
   return (
     <>
-      <ProjectModal open={open} setOpen={setOpen} />
+      <ProjectModal
+        open={open}
+        setOpen={setOpen}
+        setProjectData={setProjectData}
+      />
+      <Toaster />
       {query.status === "loading" && <Snipper />}
       <div className="text-start font-semibold mb-2">
         <Link
@@ -112,7 +142,7 @@ const page = () => {
       </div>
       <Table
         columns={columns}
-        dataSource={query?.data}
+        dataSource={dataSource}
         pagination={{
           defaultPageSize: 5,
           showSizeChanger: true,

@@ -11,6 +11,7 @@ import {
   Space,
 } from "antd";
 import React, { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const TeamOptions: SelectProps["options"] = [
   {
@@ -31,33 +32,35 @@ const TeamOptions: SelectProps["options"] = [
   },
 ];
 
-const ProjectModal = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [form] = Form.useForm();
+const ProjectModal = ({
+  open,
+  setOpen,
+  setProjectData,
+}: {
+  open: boolean;
+  setOpen: any;
+  setProjectData: any;
+}) => {
   const [team, setTeam] = useState([]);
 
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
   const onSubmit = (data: any) => {
+    toast("Processing..!");
     data.teamMembers = team;
-    console.log(data);
-    form.resetFields();
+    setProjectData(data);
+    setOpen(false);
   };
 
   return (
     <>
+      <Toaster />
       <Modal
         title="Title"
         open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
+        // confirmLoading={confirmLoading}
+        cancelButtonProps={{ style: { display: "none" } }}
+        okButtonProps={{ style: { display: "none" } }}
         onCancel={() => setOpen(false)}
+        destroyOnClose={true}
       >
         <Form
           name="normal_login"
@@ -70,7 +73,7 @@ const ProjectModal = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
         >
           <label className="block text-lg mb-2">Project title</label>
           <Form.Item
-            name="task"
+            name="title"
             rules={[
               {
                 required: true,
@@ -91,7 +94,6 @@ const ProjectModal = ({ open, setOpen }: { open: boolean; setOpen: any }) => {
               optionRender={(option) => <Space>{option.data.value}</Space>}
             />
           </div>
-
           <Form.Item style={{ marginBottom: "0px" }}>
             <Button block={true} type="primary" htmlType="submit">
               Submit

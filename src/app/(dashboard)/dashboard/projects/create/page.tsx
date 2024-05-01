@@ -15,7 +15,6 @@ import {
 } from "antd";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { json } from "stream/consumers";
 
 const TeamOptions: SelectProps["options"] = [
   {
@@ -53,6 +52,7 @@ const page = () => {
   const [teams, setTeams] = useState<string[]>([]);
   const [activities, setActivities] = useState<string>("Inprogress");
   const [dueDate, setDueDate] = useState<string>("");
+  const [form] = Form.useForm();
 
   const onSubmit = async (data: TProject | any) => {
     const randomId = Math.random().toString(36).slice(2);
@@ -83,11 +83,8 @@ const page = () => {
     if (result) {
       toast("Successfully created!");
     }
+    form.resetFields();
   };
-
-  // const dateOnChange: DatePickerProps["onChange"] = (date, dateString) => {
-  //   console.log(date, dateString);
-  // };
 
   return (
     <div>
