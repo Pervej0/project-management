@@ -7,7 +7,7 @@ To start the project
 1.  Clone the repository
 2.  Use `npm install` or `yarn add` for installing project packages
 3.  Use command `npm run dev` or `yarn run dev` to start client site
-4.  to start [json server](https://www.npmjs.com/package/json-server)
+4.  to start [json server](https://www.npmjs.com/package/json-server) use `npm run server`
 
 ### Technical Breakdown
 
